@@ -3,7 +3,6 @@
 namespace JUMA\Bundle\PingBundle\Controller;
 
 use JUMA\Bundle\PingBundle\Entity\MatchResult;
-use JUMA\Bundle\PingBundle\Entity\Team;
 use JUMA\Bundle\PingBundle\Form\QuickMatchResultType;
 use JUMA\Bundle\PingBundle\Rating\Event\MatchResultEvent;
 use JUMA\Bundle\PingBundle\Rating\Event\RatingEvents;

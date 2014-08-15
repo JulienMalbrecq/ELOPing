@@ -3,7 +3,6 @@
 
 namespace JUMA\Bundle\PingBundle\Rating\Listener;
 
-use JUMA\Bundle\PingBundle\Entity\MatchResult;
 use JUMA\Bundle\PingBundle\Rating\Event\MatchResultEvent;
 use JUMA\Bundle\PingBundle\Rating\RatingComputer;
 

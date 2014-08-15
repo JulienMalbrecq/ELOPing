@@ -104,7 +104,7 @@ class Team
         $players = $this->getPlayers()->toArray();
         array_walk(
             $players,
-            function ($player) use (&$totalRating) {
+            function (RatedInterface $player) use (&$totalRating) {
                 $totalRating += $player->getRating();
             }
         );

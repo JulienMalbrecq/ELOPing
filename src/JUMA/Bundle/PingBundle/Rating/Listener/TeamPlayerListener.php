@@ -9,13 +9,6 @@ use JUMA\Bundle\PingBundle\Entity\Team;
 
 class TeamPlayerListener
 {
-    private $baseRating;
-
-    public function __construct($baseRating = 1400)
-    {
-        $this->baseRating = $baseRating;
-    }
-
     public function prePersist(LifecycleEventArgs $args)
     {
         /** @var RatedInterface $entity */
