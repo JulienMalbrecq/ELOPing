@@ -14,7 +14,7 @@ use \DateTime;
  *
  * @ORM\Table(name="player", indexes={@ORM\Index(name="login_idx", columns={"email", "active"})})
  * @ORM\Entity(repositoryClass="HS\PasswordLessBundle\Entity\Repository\PlayerRepository")
- * @ORM\HasLifeCycleCallbacks()
+ * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity("email")
  */
 class Player implements UserInterface, RatedInterface

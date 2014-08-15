@@ -48,7 +48,6 @@ class LoginRequestProcessor
         $this->generator->convertToken($token);
 
         // prepare the response;
-        // @todo create a response listener that will set the cookie in the response header
         $response = new RedirectResponse('/');
         $response->headers->setCookie(
             new Cookie($this->cookieName,

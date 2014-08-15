@@ -2,6 +2,8 @@
 
 namespace JUMA\lib;
 
+use InvalidArgumentException;
+
 class EloRating
 {
     const
@@ -50,7 +52,7 @@ class EloRating
     {
         if (!array_key_exists($status, $this->status))
         {
-            throw new Exception(sprintf('The given status "%s" is invalid', $status));
+            throw new InvalidArgumentException(sprintf('The given status "%s" is invalid', $status));
         }
 
         return $this->status[$status];
