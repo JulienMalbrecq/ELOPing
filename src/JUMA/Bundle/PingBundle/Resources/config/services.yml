@@ -1,0 +1,49 @@
+parameters:
+    # rating
+    juma_ping.rating.rating_computer.class: JUMA\Bundle\PingBundle\Rating\RatingComputer
+
+    ## listeners
+    juma_ping.rating.base_rating_listener.class: JUMA\Bundle\PingBundle\Rating\Listener\BaseRatingListener
+    juma_ping.team.player_listener.class: JUMA\Bundle\PingBundle\Rating\Listener\TeamPlayerListener
+
+    juma_ping.rating.match_result_rating_listener.class: JUMA\Bundle\PingBundle\Rating\Listener\MatchResultRatingListener
+    juma_ping.rating.rating_history_listener.class: JUMA\Bundle\PingBundle\Rating\Listener\RatingHistoryListener
+
+    # normalizers
+    juma_ping.player.normalizer.class: JUMA\Bundle\PingBundle\Entity\Normalizer\PlayerNormalizer
+
+services:
+    # rating
+    juma_ping.rating.rating_computer:
+        class: %juma_ping.rating.rating_computer.class%
+        arguments: [@event_dispatcher]
+
+    # listeners
+    juma_ping.rating.base_rating_listener:
+        class: %juma_ping.rating.base_rating_listener.class%
+        arguments: [%juma_ping.rating.entry_rating%]
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, connection: default }
+
+    juma_ping.team.player_listener:
+        class: %juma_ping.team.player_listener.class%
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, connection: default }
+
+    juma_ping.rating.match_result_rating_listener:
+        class: %juma_ping.rating.match_result_rating_listener.class%
+        arguments: [@juma_ping.rating.rating_computer]
+        tags:
+            - { name: kernel.event_listener, event: juma_ping.rating.before_persist, method: prePersist }
+
+    juma_ping.rating.rating_history_listener:
+        class: %juma_ping.rating.rating_history_listener.class%
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: kernel.event_listener, event: juma_ping.rating.before_rating, method: onBeforeRating }
+
+    # normalizers
+    juma_ping.player.normalizer:
+        class: %juma_ping.player.normalizer.class%
+        tags:
+            - { name: serializer.normalizer }

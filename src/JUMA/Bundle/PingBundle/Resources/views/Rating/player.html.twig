@@ -1,0 +1,63 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}JUMAPingBundle:Rating:player{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="column">
+            <h1>{{ player.name }}'s rating</h1>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="column">
+        <table style="width:100%">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for entry in history %}
+                <tr>
+                    <td>{{ entry.creationDate|date('d/m/Y') }}</td>
+                    <td>{{ entry.rating }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="column">
+        <canvas id="playerChart" width="970" height="400"></canvas>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@JUMAPingBundle/Resources/public/js/Chart.min.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script>
+        var data = {
+            labels : ["{{ dataset|keys|join('","')|raw }}"],
+            datasets : [
+                {
+                    fillColor : "#007095",
+                    strokeColor : "#007095",
+                    pointColor : "#007095",
+                    pointStrokeColor : "#fff",
+                    data : [{{ dataset|join(',') }}]
+                }
+            ]
+        };
+
+        var ctx = document.getElementById("playerChart").getContext("2d");
+        var playerChart = new Chart(ctx).Line(data, {scaleOverlay: true, scaleSteps: 1});
+    </script>
+{% endblock %}

@@ -1,0 +1,60 @@
+parameters:
+    # security
+    hs_passwordless.security.authentication.provider.class: HS\PasswordLessBundle\Security\Authentication\Provider\PasswordlessProvider
+    hs_passwordless.security.authentication.listener.class: HS\PasswordLessBundle\Security\Firewall\PasswordlessListener
+
+    hs_passwordless.security.authentication.token_provider.class: HS\PasswordLessBundle\Security\Authentication\TokenProvider
+    hs_passwordless.security.authentication.token_sender.class: HS\PasswordLessBundle\Security\Authentication\TokenSender
+    hs_passwordless.security.authentication.token_generator.class: HS\PasswordLessBundle\Security\Authentication\TokenGenerator
+    hs_passwordless.security.authentication.login_request_processor_class: HS\PasswordLessBundle\Security\Authentication\LoginRequestProcessor
+
+    hs_passwordless.security.login_failure_handler.class: HS\PasswordLessBundle\Security\Authentication\LoginFailureHandler
+
+    # registration
+    hs_passwordless.registration.registration_handler.class: HS\PasswordLessBundle\Registration\RegistrationHandler
+    hs_passwordless.registration.registration_success_listener.class: HS\PasswordLessBundle\Registration\Events\Listener\RegistrationSuccessListener
+
+
+services:
+    # security
+    hs_passwordless.security.authentication.provider:
+        class: %hs_passwordless.security.authentication.provider.class%
+        arguments: [""]
+
+    hs_passwordless.security.authentication.listener:
+        class: %hs_passwordless.security.authentication.listener.class%
+        arguments: [@security.context, @security.authentication.manager, @hs_passwordless.security.authentication.token_provider, @event_dispatcher, "PLHash"]
+
+    hs_passwordless.security.authentication.token_provider:
+        class: %hs_passwordless.security.authentication.token_provider.class%
+        arguments: [ @doctrine.orm.entity_manager ]
+
+    hs_passwordless.security.authentication.token_sender:
+        class: %hs_passwordless.security.authentication.token_sender.class%
+        arguments: [ @mailer, @templating, %hs_passwordless.security.login_email% ]
+
+    hs_passwordless.security.authentication.token_generator:
+        class: %hs_passwordless.security.authentication.token_generator.class%
+        arguments: [ %hs_passwordless.security.token_ttl%, %hs_passwordless.security.token_temporary_ttl% ]
+
+    hs_passwordless.security.authentication.login_request_processor:
+        class: %hs_passwordless.security.authentication.login_request_processor_class%
+        arguments:
+            - @hs_passwordless.security.authentication.token_provider
+            - @hs_passwordless.security.authentication.token_generator
+            - @hs_passwordless.security.authentication.token_sender
+            - %credentials_cookie_name%
+
+    hs_passwordless.security.login_failure_handler:
+        class: %hs_passwordless.security.login_failure_handler.class%
+        arguments: [ @router, "hs_passwordless_request_login" ]
+
+    # registration
+    hs_passwordless.registration.registration_handler:
+        class: %hs_passwordless.registration.registration_handler.class%
+        arguments: [@doctrine.orm.entity_manager, @event_dispatcher]
+
+    hs_passwordless.registration.registration_success_listener:
+        class: %hs_passwordless.registration.registration_success_listener.class%
+        tags:
+            - { name: kernel.event_listener, event: hs_passwordless.registration.success, method: onRegistrationSuccess }

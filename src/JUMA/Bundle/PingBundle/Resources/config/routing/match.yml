@@ -1,0 +1,11 @@
+juma_ping.match_index:
+    pattern: /
+    defaults: { _controller: JUMAPingBundle:Match:index, _format: html }
+
+juma_ping.match_create:
+    pattern: /create
+    defaults: { _controller: JUMAPingBundle:Match:create, _format: html }
+
+juma_ping.match_view:
+    pattern: /view/{id}
+    defaults: { _controller: JUMAPingBundle:Match:view, _format: html }

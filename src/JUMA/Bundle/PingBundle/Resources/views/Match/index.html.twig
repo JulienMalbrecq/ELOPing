@@ -1,0 +1,39 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}JUMAPingBundle:Match:index{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="column">
+            <h1>Match list</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <table style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Local</th>
+                        <th>Versus</th>
+                        <th>Winner</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for match in matches %}
+                    <tr>
+                        <td>{{ match.playDate|date('d-m-Y') }}</td>
+                        <td>{{ match.localTeam }}</td>
+                        <td>{{ match.versusTeam }}</td>
+                        <td>{{ match.winnerTeam }}</td>
+                        <td><a href="{{ path('juma_ping.match_view', {'id': match.id}) }}">View</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

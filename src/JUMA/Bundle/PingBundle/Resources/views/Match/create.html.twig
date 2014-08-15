@@ -1,0 +1,45 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}JUMAPingBundle:Match:create{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="column">
+            <h1>Create a match</h1>
+        </div>
+    </div>
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="column small-12 medium-6">
+            <h2>Local team</h2>
+            {{ form_widget(form.localTeam) }}
+        </div>
+
+        <div class="column small-12 medium-6">
+            <h2>Versus team</h2>
+            {{ form_widget(form.versusTeam) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column small-12 medium-6">
+            <h2>Play date</h2>
+            {{ form_widget(form.playDate) }}
+        </div>
+
+        <div class="column small-12 medium-6">
+            <h2>Winning team</h2>
+            {{ form_widget(form.winnerTeam) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <input type="submit" value="Create" class="small button round" />
+        </div>
+    </div>
+
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endblock %}

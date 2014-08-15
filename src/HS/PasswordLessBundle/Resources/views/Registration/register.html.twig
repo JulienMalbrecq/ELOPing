@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}HSPasswordLessBundle:Registration:register{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Registration:register page</h1>
+
+    <form method="post">
+        {{ form_widget(form) }}
+        <input type="submit" />
+    </form>
+{% endblock %}

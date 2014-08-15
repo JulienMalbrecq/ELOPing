@@ -1,0 +1,31 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}JUMAPingBundle:Match:view{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="column">
+            <h1>Match result</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <dl>
+            <dt class="small-12 medium-3 column">Date:</dt>
+            <dd class="small-12 medium-9 column">{{ matchResult.playDate|date('d/m/Y') }}</dd>
+
+            <dt class="small-12 medium-3 column">Winning team:</dt>
+            <dd class="small-12 medium-9 column">{{ matchResult.winnerTeam.playersName(' & ') }}</dd>
+
+            <dt class="small-12 medium-3 column">Loosing team:</dt>
+            <dd class="small-12 medium-9 column">{{ matchResult.loserTeam.playersName(' & ') }} <small>Loooooooosers!</small></dd>
+        </dl>
+    </div>
+
+    <div class="row">
+        <p class="column">
+            <a href="{{ path('juma_ping.match_create') }}" class="small round button">Enter a new match result</a> <a href="{{ path('juma_ping.rating_list') }}" class="small round button">To the ratings!</a>
+        </p>
+    </div>
+{% endblock %}
+

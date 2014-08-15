@@ -1,0 +1,8 @@
+hs_password_less:
+    resource: "@HSPasswordLessBundle/Resources/config/routing.yml"
+    prefix:   /
+
+juma_ping:
+    resource: "@JUMAPingBundle/Resources/config/routing.yml"
+    prefix:   /
+

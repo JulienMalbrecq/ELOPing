@@ -1,0 +1,39 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}JUMAPingBundle:Rating:list{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="column">
+            <h1>Players rating</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <table style="width:100%">
+                <thead>
+                <tr>
+                    <th>Player name</th>
+                    <th>Rating</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for player in ratings %}
+                    <tr>
+                        <td><a href="{{ path('juma_ping.rating_player', {'id': player.id}) }}">{{ player.name }}</a></td>
+                        <td>{{ player.rating }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <p class="column">
+            <a href="{{ path('juma_ping.match_create') }}" class="small round button">Enter a new match result</a>
+        </p>
+    </div>
+{% endblock %}

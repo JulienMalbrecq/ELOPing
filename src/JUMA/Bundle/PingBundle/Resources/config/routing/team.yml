@@ -1,0 +1,3 @@
+juma_ping.team_create:
+    pattern: /create
+    defaults: { _controller: JUMAPingBundle:Team:create }

@@ -1,0 +1,7 @@
+<div id="playerSelect">
+    <h1>Qui joue?</h1>
+    <form ng-submit="selectPlayers()">
+        <input type="text" ng-model="playerInput" name="test" placeholder="Pierre et Pol contre Jacques et François" /><input type="submit" value="C'est parti!" class="button"/>
+        <p class="error" ng-visible="error">{{ error }}</p>
+    </form>
+</div>

@@ -1,0 +1,7 @@
+juma_ping.rating_list:
+    pattern: /
+    defaults: { _controller: JUMAPingBundle:Rating:list }
+
+juma_ping.rating_player:
+    pattern: /player/{id}
+    defaults: { _controller: JUMAPingBundle:Rating:player }

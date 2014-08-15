@@ -1,0 +1,5 @@
+<div id="counter">
+    <team model="match.teamA" ng-click="addPoint(match.teamA)" class="first"></team>
+    <team model="match.teamB" ng-click="addPoint(match.teamB)" class="second"></team>
+    <div class="service" ng-class="{firstTeam: match.serviceTeam == match.teamA, secondTeam: match.serviceTeam == match.teamB}" ng-dblclick="undo()" ng-swipe-left="undo()"></div>
+</div>

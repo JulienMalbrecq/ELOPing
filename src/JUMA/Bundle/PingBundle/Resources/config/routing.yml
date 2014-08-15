@@ -1,0 +1,19 @@
+juma_ping_homepage:
+    pattern:  /
+    defaults: { _controller: JUMAPingBundle:Match:index }
+
+juma_ping.team:
+    resource: "@JUMAPingBundle/Resources/config/routing/team.yml"
+    prefix:   /team
+
+juma_ping.match:
+    resource: "@JUMAPingBundle/Resources/config/routing/match.yml"
+    prefix:   /match
+
+juma_ping.rating:
+    resource: "@JUMAPingBundle/Resources/config/routing/rating.yml"
+    prefix:   /rating
+
+juma_ping.api:
+    resource: "@JUMAPingBundle/Resources/config/routing/api.yml"
+    prefix:   /api
