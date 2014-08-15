@@ -4,7 +4,7 @@ namespace HS\PasswordLessBundle\Security\Firewall;
 
 use HS\PasswordLessBundle\Security\Events\SecurityEvents;
 use HS\PasswordLessBundle\Security\Authentication\TokenProviderInterface;
-use HS\PasswordLessBundle\Security\Authentication\Token\PasswordLessToken;
+use HS\PasswordLessBundle\Security\Authentication\Token\PasswordlessToken;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,7 +49,6 @@ class PasswordlessListener implements ListenerInterface
 
             return;
         } catch (AuthenticationException $failed) {
-
             $token = $this->securityContext->getToken();
             if ($token instanceof PasswordlessToken && $this->providerKey === $token->getProviderKey()) {
                 $this->securityContext->setToken(null);
