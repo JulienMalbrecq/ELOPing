@@ -2,6 +2,9 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
 
+parameters:
+    credentials_cookie_name: pxy14ibe6jhqb53c13j1
+
 framework:
     #esi:             ~
     #translator:      { fallback: "%locale%" }
