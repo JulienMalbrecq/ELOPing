@@ -8,8 +8,6 @@ parameters:
     hs_passwordless.security.authentication.token_generator.class: HS\PasswordLessBundle\Security\Authentication\TokenGenerator
     hs_passwordless.security.authentication.login_request_processor_class: HS\PasswordLessBundle\Security\Authentication\LoginRequestProcessor
 
-    hs_passwordless.security.login_failure_handler.class: HS\PasswordLessBundle\Security\Authentication\LoginFailureHandler
-
     # registration
     hs_passwordless.registration.registration_handler.class: HS\PasswordLessBundle\Registration\RegistrationHandler
     hs_passwordless.registration.registration_success_listener.class: HS\PasswordLessBundle\Registration\Events\Listener\RegistrationSuccessListener
@@ -44,10 +42,6 @@ services:
             - @hs_passwordless.security.authentication.token_generator
             - @hs_passwordless.security.authentication.token_sender
             - %credentials_cookie_name%
-
-    hs_passwordless.security.login_failure_handler:
-        class: %hs_passwordless.security.login_failure_handler.class%
-        arguments: [ @router, "hs_passwordless_request_login" ]
 
     # registration
     hs_passwordless.registration.registration_handler:
