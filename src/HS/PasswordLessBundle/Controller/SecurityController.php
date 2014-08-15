@@ -48,7 +48,6 @@ class SecurityController extends Controller
 
         $response = $this->get('hs_passwordless.security.authentication.login_request_processor')->confirmUserToken($loginHash);
 
-        // @todo get the redirect response from the configuration
         $response->setTargetUrl($this->generateUrl('juma_ping_homepage', array('name' => $loginHash->getUser()->getName())));
 
         $this->getDoctrine()->getManager()->flush($loginHash);
