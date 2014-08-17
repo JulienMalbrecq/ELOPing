@@ -45,7 +45,7 @@
 
     <script>
         var data = {
-            labels : ["{{ dataset|keys|join('","')|raw }}"],
+            labels : {{ dataset|keys|json_encode() }},
             datasets : [
                 {
                     fillColor : "#007095",
