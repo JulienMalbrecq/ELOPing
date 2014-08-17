@@ -20,6 +20,7 @@ class RegistrationController extends Controller
             if ($form->isValid()) {
                 $registrationHandler = $this->get('hs_passwordless.registration.registration_handler');
                 $registrationHandler->registerUser($player);
+                return $this->redirect($this->generateUrl('hs_passwordless_request_login'));
             }
         }
 

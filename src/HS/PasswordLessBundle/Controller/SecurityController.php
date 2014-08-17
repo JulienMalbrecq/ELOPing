@@ -39,19 +39,18 @@ class SecurityController extends Controller
             ));
     }
 
-    public function confirmLoginAction(LoginHash $loginHash)
+    public function confirmLoginAction(Request $request, LoginHash $loginHash)
     {
         $now = new \DateTime();
         if ($loginHash->getTTL() <= $now || !$loginHash->isTemporary()) {
             throw $this->createNotFoundException('loginHashNotFound');
         }
 
-        $response = $this->get('hs_passwordless.security.authentication.login_request_processor')->confirmUserToken($loginHash);
+        $updated = $this->get('hs_passwordless.security.authentication.login_request_processor')->confirmUserToken($loginHash);
+        if ($updated) {
+            $request->attributes->set('login_hash_updated', $loginHash);
+        }
 
-        $response->setTargetUrl($this->generateUrl('juma_ping_homepage', array('name' => $loginHash->getUser()->getName())));
-
-        $this->getDoctrine()->getManager()->flush($loginHash);
-
-        return $response;
+        return $this->redirect($this->generateUrl('juma_ping_homepage'));
     }
 }

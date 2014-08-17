@@ -14,6 +14,8 @@ parameters:
     hs_passwordless.registration.registration_handler.class: HS\PasswordLessBundle\Registration\RegistrationHandler
     hs_passwordless.registration.registration_success_listener.class: HS\PasswordLessBundle\Registration\Events\Listener\RegistrationSuccessListener
 
+    # listeners
+    hs_passwordless.security.events.listener.loginhashupdatedresponselistener.class: HS\PasswordLessBundle\Security\Events\Listener\LoginHashUpdatedResponseListener
 
 services:
     # security
@@ -43,7 +45,6 @@ services:
             - @hs_passwordless.security.authentication.token_provider
             - @hs_passwordless.security.authentication.token_generator
             - @hs_passwordless.security.authentication.token_sender
-            - %credentials_cookie_name%
 
     hs_passwordless.security.authentication.entry_point:
         class: %hs_passwordless.security.authentication.entry_point.class%
@@ -58,3 +59,10 @@ services:
         class: %hs_passwordless.registration.registration_success_listener.class%
         tags:
             - { name: kernel.event_listener, event: hs_passwordless.registration.success, method: onRegistrationSuccess }
+
+    # listeners
+    hs_passwordless.security.events.listener.loginhashupdatedresponselistener:
+        class: %hs_passwordless.security.events.listener.loginhashupdatedresponselistener.class%
+        arguments: [ @doctrine.orm.entity_manager, %credentials_cookie_name% ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
