@@ -1,6 +1,7 @@
 juma_ping.api.players_list:
     pattern: /players
     defaults: { _controller: JUMAPingBundle:Player:list }
+    methods:  [GET]
     condition: "request.isXmlHttpRequest()"
     requirements:
         _format:  json
@@ -8,5 +9,6 @@ juma_ping.api.players_list:
 juma_ping.api.player_ratings:
     pattern: /player/{id}/rating
     defaults: { _controller: JUMAPingBundle:Player:playerRatings }
+    methods:  [GET]
     requirements:
         _format:  json

@@ -1,6 +1,7 @@
 juma_ping_homepage:
     pattern:  /
     defaults: { _controller: JUMAPingBundle:Match:index }
+    methods:  [GET]
 
 juma_ping.team:
     resource: "@JUMAPingBundle/Resources/config/routing/team.yml"
