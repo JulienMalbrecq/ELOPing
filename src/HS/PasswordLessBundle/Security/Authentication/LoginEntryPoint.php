@@ -13,7 +13,7 @@ class LoginEntryPoint implements AuthenticationEntryPointInterface
     private $router;
     private $loginPath;
 
-    public function __construct(RouterInterface $router, $loginPath = '/')
+    public function __construct(RouterInterface $router, $loginPath = null)
     {
         $this->router = $router;
         $this->loginPath = $loginPath;
