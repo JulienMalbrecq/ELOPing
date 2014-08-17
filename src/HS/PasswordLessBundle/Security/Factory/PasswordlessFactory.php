@@ -23,7 +23,9 @@ class PasswordlessFactory implements SecurityFactoryInterface
             ->setDefinition($listenerId, new DefinitionDecorator('hs_passwordless.security.authentication.listener'))
             ->replaceArgument(4, $config['cookie_name']);
 
-        return array($providerId, $listenerId, $defaultEntryPoint);
+        $entryPointId = $this->createEntryPoint($container, $id, $config);
+
+        return array($providerId, $listenerId, $entryPointId);
     }
 
     public function getPosition()
@@ -43,5 +45,16 @@ class PasswordlessFactory implements SecurityFactoryInterface
                 ->scalarNode('cookie_name')->defaultValue('passwordless_hash')->end()
                 ->scalarNode('login_path')->end()
             ->end();
+    }
+
+    protected function createEntryPoint(ContainerBuilder $container, $id, $config)
+    {
+        $entryPointId = 'security.authentication.entry_point.passwordless.'.$id;
+        $container
+            ->setDefinition($entryPointId, new DefinitionDecorator('hs_passwordless.security.authentication.entry_point'))
+            ->addArgument($config['login_path'])->getArguments()
+        ;
+
+        return $entryPointId;
     }
 } 
