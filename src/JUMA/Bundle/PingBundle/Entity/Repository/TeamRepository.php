@@ -26,4 +26,4 @@ class TeamRepository extends EntityRepository
 
         return $qb->getQuery()->getOneOrNullResult();
     }
-} 
+}

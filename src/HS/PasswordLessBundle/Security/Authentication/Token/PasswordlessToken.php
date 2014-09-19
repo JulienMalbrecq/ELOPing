@@ -22,4 +22,4 @@ class PasswordlessToken extends AbstractToken
     {
         return '';
     }
-} 
+}

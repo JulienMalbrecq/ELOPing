@@ -37,5 +37,4 @@ class LoginHashUpdatedResponseListener
             $this->om->flush($token);
         }
     }
-
-} 
+}

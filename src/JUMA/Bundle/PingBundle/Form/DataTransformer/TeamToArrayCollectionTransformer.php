@@ -64,4 +64,4 @@ class TeamToArrayCollectionTransformer implements DataTransformerInterface
         return $team;
     }
 
-} 
+}

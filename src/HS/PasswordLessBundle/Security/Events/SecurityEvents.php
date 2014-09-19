@@ -15,4 +15,4 @@ final class SecurityEvents
      * @var string
      */
     const LOGIN_FAILED = 'hs_passwordless_security_failed_login';
-} 
+}

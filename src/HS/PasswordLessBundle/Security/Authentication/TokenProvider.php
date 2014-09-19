@@ -43,4 +43,4 @@ class TokenProvider implements TokenProviderInterface
     {
         $this->om->remove($token);
     }
-} 
+}

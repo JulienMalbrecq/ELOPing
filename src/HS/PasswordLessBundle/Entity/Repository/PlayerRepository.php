@@ -61,4 +61,4 @@ class PlayerRepository extends EntityRepository implements UserProviderInterface
 
         return $qb->getQuery()->useQueryCache(true)->getArrayResult();
     }
-} 
+}

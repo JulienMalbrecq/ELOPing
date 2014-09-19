@@ -47,4 +47,4 @@ class RatingComputer
             $player->setRating($elo);
         }
     }
-} 
+}

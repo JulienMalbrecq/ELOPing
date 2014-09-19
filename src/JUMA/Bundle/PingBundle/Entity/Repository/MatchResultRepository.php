@@ -20,4 +20,4 @@ class MatchResultRepository extends EntityRepository
 
         return $qb->getQuery()->getArrayResult();
     }
-} 
+}

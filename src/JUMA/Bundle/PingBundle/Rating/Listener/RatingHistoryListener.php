@@ -34,4 +34,4 @@ class RatingHistoryListener
             $this->om->persist($ratingHistory);
         }
     }
-} 
+}

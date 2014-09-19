@@ -42,4 +42,4 @@ class PlayerNormalizer implements NormalizerInterface
         return $data instanceof Player;
     }
 
-} 
+}

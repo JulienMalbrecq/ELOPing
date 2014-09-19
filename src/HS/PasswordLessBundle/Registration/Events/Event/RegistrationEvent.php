@@ -21,4 +21,4 @@ class RegistrationEvent extends Event
     {
         return $this->player;
     }
-} 
+}

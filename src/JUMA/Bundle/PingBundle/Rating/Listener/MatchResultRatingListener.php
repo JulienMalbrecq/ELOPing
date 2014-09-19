@@ -20,4 +20,4 @@ class MatchResultRatingListener
         $match = $event->getMatchResult();
         $this->computer->applyMatchResultRating($match);
     }
-} 
+}

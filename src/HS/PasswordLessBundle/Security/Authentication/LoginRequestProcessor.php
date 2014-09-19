@@ -45,4 +45,4 @@ class LoginRequestProcessor
         $this->generator->convertToken($token);
         return $token->isTemporary() !== $beforeState;
     }
-} 
+}

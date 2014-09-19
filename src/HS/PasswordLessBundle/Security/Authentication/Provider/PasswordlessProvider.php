@@ -43,4 +43,4 @@ class PasswordlessProvider implements AuthenticationProviderInterface
         return $token instanceof PasswordlessToken;
     }
 
-} 
+}

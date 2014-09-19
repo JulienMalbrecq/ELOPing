@@ -23,4 +23,4 @@ class MatchResultEvent extends Event
     {
         return $this->match;
     }
-} 
+}

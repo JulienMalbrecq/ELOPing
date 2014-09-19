@@ -10,4 +10,4 @@ class RegistrationSuccessListener
 {
     public function onRegistrationSuccess(RegistrationEvent $event)
     {}
-} 
+}

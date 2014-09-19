@@ -72,4 +72,4 @@ class PasswordlessListener implements ListenerInterface
 
         $response->headers->clearCookie($this->cookieName, '/');
     }
-} 
+}

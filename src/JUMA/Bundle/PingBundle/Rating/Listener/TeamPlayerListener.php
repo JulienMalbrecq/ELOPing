@@ -27,4 +27,4 @@ class TeamPlayerListener
         return $entity instanceof RatedInterface;
     }
 
-} 
+}

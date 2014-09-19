@@ -57,4 +57,4 @@ class PasswordlessFactory implements SecurityFactoryInterface
 
         return $entryPointId;
     }
-} 
+}

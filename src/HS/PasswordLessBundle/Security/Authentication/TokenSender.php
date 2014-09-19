@@ -37,4 +37,4 @@ class TokenSender
 
         $this->mailer->send($message);
     }
-} 
+}

@@ -53,4 +53,4 @@ class TokenGenerator
 
         return $ttl;
     }
-} 
+}

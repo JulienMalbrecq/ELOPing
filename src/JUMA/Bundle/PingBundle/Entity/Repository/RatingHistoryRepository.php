@@ -29,4 +29,4 @@ class RatingHistoryRepository extends EntityRepository
 
         return $rating;
     }
-} 
+}

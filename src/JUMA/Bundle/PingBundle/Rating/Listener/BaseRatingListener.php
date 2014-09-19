@@ -32,4 +32,4 @@ class BaseRatingListener
         return $entity instanceof RatedInterface;
     }
 
-} 
+}
